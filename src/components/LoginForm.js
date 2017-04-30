@@ -49,4 +49,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { emailChanged })(LoginForm);
+export default connect(mapStateToProps, { emailChanged, passwordChanged })(LoginForm);
