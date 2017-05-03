@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, View, Picker } from 'react-native';
+import { Text, Picker } from 'react-native';
 import { Button, Input, CardSection, Card } from './common';
 import { employeeUpdate } from '../actions';
 
@@ -58,7 +58,7 @@ const styles = {
         fontSize: 18,
         paddingLeft: 20,
     }
-}
+};
 
 const mapStateToProps = (state) => {
     const { name, phone, shift } = state.employeeForm;
