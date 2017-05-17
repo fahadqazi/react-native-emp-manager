@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import Actions from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 
 import {
   EMPLOYEE_UPDATE,
@@ -14,14 +14,16 @@ export const employeeUpdate = ({ prop, value }) => {
 };
 
 export const employeeCreate = ({ name, phone, shift }) => {
-    const currentUser = firebase.auth();
+    console.log( name, phone, shift );
+    const { currentUser } = firebase.auth();
 
     return (dispatch) => {
         firebase.database().ref(`/users/${currentUser.uid}/employees`)
             .push({ name, phone, shift })
             .then(() => {
                 dispatch({ type: EMPLOYEE_CREATE });
-                Actions.employeeList({ type: 'reset' });
+                Actions.employeeList({ type: 'reset' });  //redirect to screen; screen has no back button
             });
     };
 };
+

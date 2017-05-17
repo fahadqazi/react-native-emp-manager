@@ -4,7 +4,7 @@ import { Text, Picker } from 'react-native';
 import { Button, Input, CardSection, Card } from './common';
 import { employeeUpdate, employeeCreate } from '../actions';
 
-class EmployeeForm extends Component {
+class EmployeeCreate extends Component {
     onButtonPress() {
         const { name, phone, shift } = this.props;
 
@@ -73,4 +73,4 @@ const mapStateToProps = (state) => {
     );
 };
 
-export default connect(mapStateToProps, { employeeUpdate, employeeCreate })(EmployeeForm);
+export default connect(mapStateToProps, { employeeUpdate, employeeCreate })(EmployeeCreate);
