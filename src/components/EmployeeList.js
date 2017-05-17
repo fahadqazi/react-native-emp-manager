@@ -1,20 +1,25 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { employeesFetch } from '../actions';
 import { ListView, Text, View } from 'react-native';
 
 class EmployeeList extends Component {
-    componentWillMount(){
+    componentWillMount() {
         this.props.employeesFetch();
 
-        createDataSource(this.props);
+        this.createDataSource(this.props);
     }
 
-    componentWillReceiveProps(nextProps){
-        createDataSource(nextProps);
+    componentWillReceiveProps(nextProps) {
+        // nextProps are the next set of props that this component
+        // will be rendered with
+        // this.props is still the old set of props
+
+        this.createDataSource(nextProps);
     }
 
-    createDataSource = ({ employees }) => {
+    createDataSource({ employees }) {
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
         });
@@ -23,6 +28,7 @@ class EmployeeList extends Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <View>
                 <Text>Employee List</Text>
@@ -35,4 +41,11 @@ class EmployeeList extends Component {
     }
 }
 
-export default connect(null, { employeesFetch })(EmployeeList);
+const mapStateToProps = (state) => {
+    const employees = _.map(state.employees, (val, uid) =>{
+        return {...val, uid};
+    });
+    return { employees };
+}
+
+export default connect(mapStateToProps, { employeesFetch })(EmployeeList);
