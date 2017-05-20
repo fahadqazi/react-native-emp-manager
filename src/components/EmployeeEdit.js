@@ -41,6 +41,12 @@ class EmployeeEdit extends Component{
                         Text Schedule
                     </Button>
                 </CardSection>
+
+                <CardSection>
+                    <Button onPress={this.onButtonPress.bind(this)}>
+                        Save Changes
+                    </Button>
+                </CardSection>
             </Card>
         );
     }
